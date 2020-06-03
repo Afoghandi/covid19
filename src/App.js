@@ -2,7 +2,7 @@ import React from "react";
 import { Cards, Charts, CountryPicker } from "./components";
 
 import { fetchData } from "./api";
-
+import image from "./images/corona.jpg";
 import "./App.css";
 
 class App extends React.Component {
@@ -21,13 +21,14 @@ class App extends React.Component {
 		this.setState({ data: fetchedData, country: country });
 	};
 	render() {
-		const { data } = this.state;
+		const { data, country } = this.state;
 
 		return (
 			<div className="container">
+				<img className="img" src={image} alt="corona" />
 				<Cards data={data} />
 				<CountryPicker handleCountryChange={this.handleCountryChange} />
-				<Charts />
+				<Charts data={data} country={country} />
 			</div>
 		);
 	}
